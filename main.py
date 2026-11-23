@@ -18,6 +18,11 @@ import os
 WORD = "Al"
 OUTPUT_PATH = "/output/entry.txt"
 
+# Mirror of the sealed gate in RULES.txt: /output/entry.txt must be
+# UTF-8 text of 1 to 30 characters, not only white space. Refuse to
+# write anything that would fail it, so a bad WORD can never ship.
+assert 1 <= len(WORD) <= 30 and WORD.strip(), "WORD fails the gate"
+
 
 def main() -> None:
     parent = os.path.dirname(OUTPUT_PATH)
